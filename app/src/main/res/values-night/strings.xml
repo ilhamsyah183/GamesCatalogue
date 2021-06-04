@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="wrong">Opps Ada yang salah akan kami perbaiki</string>
+    <string name="pl_poster">imgPoster</string>
+    <string name="nulldata">Data Kosong</string>
+    <string name="menu_favorite">Favorite</string>
+    <string name="rating">Rating :</string>
+    <string name="menu_home">Home</string>
+    <string name="navigation_drawer_open">Open Navigation</string>
+    <string name="navigation_drawer_close">Close Navigation</string>
+    <string name="pl_released">Released Date :</string>
+    <string name="sample_date">2000-01-01</string>
+    <string name="sample_rate">4.8</string>
+</resources>
