@@ -12,9 +12,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailGameActivity : AppCompatActivity() {
 
-    companion object {
-        const val EXTRA_DATA = "extra_data"
-    }
+
 
     private val detailGameViewModel: DetailGameViewModel by viewModel()
     private lateinit var binding: ActivityDetailGameBinding
@@ -25,9 +23,6 @@ class DetailGameActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-
-//        val factory = ViewModelFactory.getInstance(this)
-//        detailTourismViewModel = ViewModelProvider(this, factory)[DetailGameViewModel::class.java]
 
         val detailGame = intent.getParcelableExtra<Game>(EXTRA_DATA)
         showDetailTourism(detailGame)
@@ -58,5 +53,9 @@ class DetailGameActivity : AppCompatActivity() {
         } else {
             binding.fab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_not_favorite_white))
         }
+    }
+
+    companion object {
+        const val EXTRA_DATA = "extra_data"
     }
 }

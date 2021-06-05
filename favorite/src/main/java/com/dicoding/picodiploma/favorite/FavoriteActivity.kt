@@ -10,6 +10,7 @@ import com.dicoding.picodiploma.favorite.databinding.ActivityFavoriteBinding
 import com.dicoding.picodiploma.gamescatalogue.detail.DetailGameActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
+import org.koin.core.context.unloadKoinModules
 
 class FavoriteActivity : AppCompatActivity() {
 
@@ -25,6 +26,7 @@ class FavoriteActivity : AppCompatActivity() {
         loadKoinModules(favoriteModule)
         supportActionBar?.title = "Favorite Page"
         getFavoriteData()
+        unloadKoinModules(favoriteModule)
     }
 
     private fun getFavoriteData() {

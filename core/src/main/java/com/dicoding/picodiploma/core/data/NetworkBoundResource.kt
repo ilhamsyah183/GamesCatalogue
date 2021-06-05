@@ -1,5 +1,6 @@
 package com.dicoding.picodiploma.core.data
 
+import com.dicoding.picodiploma.core.data.Resource.Error
 import com.dicoding.picodiploma.core.data.source.remote.network.ApiResponse
 import kotlinx.coroutines.flow.*
 
@@ -28,7 +29,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
                 }
                 is ApiResponse.Error -> {
                     onFetchFailed()
-                    emit(Resource.Error<ResultType>(apiResponse.errorMessage))
+                    emit(Error<ResultType>(apiResponse.errorMessage))
                 }
             }
         } else {

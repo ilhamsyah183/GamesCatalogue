@@ -34,4 +34,6 @@ dependencies {
     implementation "io.insert-koin:koin-android:$koin_version"// Koin Android - experimental builder extensions
     implementation "io.insert-koin:koin-android-ext:$koin_version"// Koin for Jetpack WorkManager
     implementation "io.insert-koin:koin-androidx-workmanager:$koin_version"
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
 }
