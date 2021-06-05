@@ -1,10 +1,13 @@
 package com.dicoding.picodiploma.core.di
 
 import androidx.room.Room
+import com.dicoding.picodiploma.core.data.source.local.room.GamesDatabase
 import com.dicoding.picodiploma.core.data.source.remote.RemoteDataSource
 import com.dicoding.picodiploma.core.data.source.remote.network.ApiService
 import com.dicoding.picodiploma.core.domain.repository.IGameRepository
 import com.dicoding.picodiploma.core.utils.AppExecutors
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -14,12 +17,16 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 val databaseModule = module {
-    factory { get<com.dicoding.picodiploma.core.data.source.local.room.GamesDatabase>().gamesDao() }
+    factory { get<GamesDatabase>().gamesDao() }
     single {
+        val passphrase: ByteArray = SQLiteDatabase.getBytes("dicoding".toCharArray())
+        val factory = SupportFactory(passphrase)
         Room.databaseBuilder(
             androidContext(),
-            com.dicoding.picodiploma.core.data.source.local.room.GamesDatabase::class.java, "Game.db"
-        ).fallbackToDestructiveMigration().build()
+            GamesDatabase::class.java, "Game.db"
+        ).fallbackToDestructiveMigration()
+            .openHelperFactory(factory)
+            .build()
     }
 }
 
